@@ -39,8 +39,6 @@
       apt:
         name: redis-server
         update_cache: yes
-      notify:
-        - Enable Redis
     - name: Enable Redis
       systemd:
         name: redis-server
