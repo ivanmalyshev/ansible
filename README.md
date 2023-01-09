@@ -3,7 +3,7 @@
 
 1. установить на машину ансибл 
 
-   **apt get install ansible**
+   **apt-get install ansible**
 
 2. Склонировать репозиторий
 
