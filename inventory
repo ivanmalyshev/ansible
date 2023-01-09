@@ -1,3 +1,14 @@
+#[servers]
+#158.160.42.214
+#
+#
+#[servers:vars]
+#ansible_ssh_user=mid
+#ansible_ssh_private_key_file=/root/.ssh/yandex
+
 [servers]
-  <ip_address> ansible_ssh_user=<login> ansible_ssh_private_key_file=/root/.ssh/<private_key>
-  
+<ip_address> 
+
+[servers:vars]
+ansible_ssh_user=<login>
+ansible_ssh_private_key_file=<path/to/key>
