@@ -1,0 +1,3 @@
+[servers]
+  158.160.39.21 ansible_ssh_user=mid ansible_ssh_private_key_file=/root/.ssh/yandex
+  

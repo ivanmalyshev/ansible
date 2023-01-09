@@ -1,0 +1,47 @@
+- hosts: all
+  become: true
+  vars_files:
+    - vars/default.yml
+
+  tasks:
+    - name: Install prerequisites
+      apt: name={{ item }} update_cache=yes state=latest force_apt_get=yes
+      loop: [ 'aptitude' ]
+
+  #Install package
+    - name: Install package
+      apt: name={{ item }} update_cache=yes state=latest
+      loop: [ 'mariadb-server', 'php', 'php-mysql', 'php8.1-fpm', 'redis-server', 'supervisor', 'python3-pymysql', 'php-mysql' ] 
+  # MySQL Configuration
+    - name: Sets the root password
+      mysql_user:
+        name: root
+        password: "{{ mysql_root_password }}"
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+    - name: Removes all anonymous user accounts
+      mysql_user:
+        name: ''
+        host_all: yes
+        state: absent
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+    - name: Removes the MySQL test database
+      mysql_db:
+        name: test
+        state: absent
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+    - name: Set up Redis 6 repo
+      shell: |
+        curl https://packages.redis.io/gpg | sudo apt-key add -
+        echo "deb https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
+    - name: Install redis
+      apt:
+        name: redis-server
+        update_cache: yes
+      notify:
+        - Enable Redis
+    - name: Enable Redis
+      systemd:
+        name: redis-server
+        enabled: yes
