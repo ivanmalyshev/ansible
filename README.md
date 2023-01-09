@@ -1,4 +1,4 @@
-# ansible
+# 'mariadb-server', 'php', 'php-mysql', 'php8.1-fpm', 'supervisor', 'python3-pymysql', 'php-mysql
 ## установка
 
 1. установить на машину ансибл 
