@@ -11,7 +11,7 @@
   #Install package
     - name: Install package
       apt: name={{ item }} update_cache=yes state=latest
-      loop: [ 'mariadb-server', 'php', 'php-mysql', 'php8.1-fpm', 'redis-server', 'supervisor', 'python3-pymysql', 'php-mysql' ] 
+      loop: [ 'mariadb-server', 'php', 'php-mysql', 'php8.1-fpm', 'supervisor', 'python3-pymysql', 'php-mysql' ] 
   # MySQL Configuration
     - name: Sets the root password
       mysql_user:
