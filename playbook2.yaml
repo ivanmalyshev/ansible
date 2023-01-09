@@ -31,7 +31,7 @@
         state: absent
         login_user: root
         login_password: "{{ mysql_root_password }}"
-    - name: Set up Redis 6 repo
+    - name: Setup Redis 6 repo
       shell: |
         curl https://packages.redis.io/gpg | sudo apt-key add -
         echo "deb https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
